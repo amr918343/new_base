@@ -18,4 +18,5 @@ Route::namespace('App')->group(function () {
     Route::namespace('User')->prefix('user')->group(function () {
         Route::apiResource('/', 'UserController');
     });
+    Route::get('/sse', 'SSEController@index');
 });
