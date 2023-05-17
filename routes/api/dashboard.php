@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::namespace('Dashboard')->group(function () {
+Route::namespace('Dashboard')->middleware(['auth:api', 'admin'])->group(function () {
     Route::namespace('User')->prefix('user')->group(function () {
         Route::apiResource('/', 'UserController');
     });
