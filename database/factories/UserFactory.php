@@ -15,11 +15,20 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
+            'fullname' => $this->faker->name(),
+            'user_type' => 'superadmin',
+            'phone' => $this->faker->phoneNumber(),
+            'age' => $this->faker->numberBetween(20,100),
+            'is_active' => 1,
+            'is_ban' => 0,
+            'is_activated_by_admin' => 1,
+            'gender' => 'male',
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => bcrypt('123456'),
             'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 
