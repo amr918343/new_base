@@ -1,7 +1,6 @@
 <?php
-namespace App\Services\Admin\AdminService;
+namespace App\Services\Dashboard\Admin\AdminService;
 
-use App\Http\Requests\Admin\AdminRequest;
 use App\Http\Requests\General\FilterRequest;
 use App\Http\Resources\Dashboard\Admin\IndexAdminResource;
 use App\Http\Resources\Dashboard\Admin\ShowAdminResource;

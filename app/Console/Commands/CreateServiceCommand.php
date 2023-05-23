@@ -37,28 +37,29 @@ class CreateServiceCommand extends Command
      */
     public function handle()
     {
-        $className = $this->argument('class');
-        $path = base_path('Services/' . $className . '.php');
-        $classNamespace = str_replace('/', '\\', $className);
-        $className = substr($classNamespace, strpos($classNamespace, '\\') + 1);
+        $classNameArgument = $this->argument('class');
+        $className = substr(strrchr($classNameArgument, "/"), 1);
+        $path = base_path('app/Services/' . $classNameArgument . '.php');
+        $namespace =  str_replace('/', '\\', str_replace('/' . $className, '', app()->getNamespace() . 'Services/' . $classNameArgument));
+
         $content =
 '<?php
-namespace App\\Services\\' . $classNamespace . ';
+namespace App\\Services\\' . $namespace . ';
 
 class ' .  $className . ' {
 
 }
 '
 ;
-        if(file_exists($path)) {
+        if (file_exists($path)) {
             $this->error('Service already exists: ' . $className);
             return;
         }
-        if(file_exists(dirname($path))) {
-            mkdir($path, 0777, true);
-        } else {
+
+        if (!file_exists(dirname($path))) {
             mkdir(dirname($path), 0777, true);
         }
+
         file_put_contents($path, $content);
     }
 }

@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->string('locale', '10')->default('en');
             $table->string('user_type')->nullable(); //admin - superadmin - client - driver - provider...
             $table->string('ip')->nullable();
             $table->string('fullname');

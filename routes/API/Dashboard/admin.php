@@ -14,11 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('admin')->get('test', function() {
-    return '1000';
+Route::prefix('admin')->namespace('Admin')->group(function () {
+    Route::namespace('Auth')->prefix('auth')->group(function() {
+        Route::post('login', 'AuthController@login');
+    });
 });
+
 Route::prefix('admin')->namespace('Admin')->middleware(['auth:api', 'admin'])->group(function () {
-    Route::namespace('User')->prefix('user')->group(function () {
-        Route::apiResource('/', 'UserController');
+    Route::namespace('Auth')->prefix('auth')->group(function() {
+        Route::post('logout', 'AuthController@logout');
     });
 });

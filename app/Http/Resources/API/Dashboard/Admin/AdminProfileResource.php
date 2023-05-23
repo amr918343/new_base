@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\API\Dashboard\Admin;
 
-use App\Http\Resources\Dashboard\Role\SimpleRoleResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShowAdminResource extends JsonResource
+class AdminProfileResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,10 +18,10 @@ class ShowAdminResource extends JsonResource
             'id' => $this->id,
             'image' => $this->image,
             'name' => $this->name,
-            'role' => new SimpleRoleResource($this->role),
             'phone' => $this->phone,
             'email' => $this->email,
-            'created_at' => $this->created_at?->format('Y-m-d H:i:s'),
+            // 'role' => new SimpleRoleResource($this->role),
+            'created_at' => $this->created_at>format('Y-m-d H:i:s'),
         ];
     }
 }
